@@ -30,3 +30,15 @@ void mcu_sleep(uint32_t ms) {
 void led_toggle(void) {
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 }
+
+bool button_is_pressed(void) {
+    if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET) {
+        while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET) {
+            mcu_sleep(1);
+        }
+
+        return true;
+    }
+
+    return false;
+}

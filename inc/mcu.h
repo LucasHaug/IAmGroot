@@ -8,6 +8,7 @@
 #define __MCU_H__
 
 #include <stdint.h>
+#include <stdbool.h>
 
 /*****************************************
  * Public Function Prototypes
@@ -35,5 +36,13 @@ void mcu_sleep(uint32_t ms);
  * @brief Toggles LED.
  */
 void led_toggle(void);
+
+/**
+ * @brief Gets button state
+ *
+ * @return true when button is pressed
+ * @return false when button is not pressed
+ */
+bool button_is_pressed(void);
 
 #endif // __MCU_H__
