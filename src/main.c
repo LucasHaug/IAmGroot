@@ -13,7 +13,7 @@
  * Private Variables
  *****************************************/
 
-static uint8_t audio_data = 0;
+static uint8_t current_audio_data = 0;
 static bool play_audio = false;
 
 /*****************************************
@@ -33,7 +33,7 @@ int main(void) {
             play_audio = true;
         }
 
-        speaker_play(audio_data);
+        speaker_play(current_audio_data);
     }
 }
 
@@ -41,7 +41,7 @@ int main(void) {
  * @brief Control callback function
  */
 void control_timer_callback() {
-    static uint16_t audio_data_index = 0;
+    static uint16_t current_audio_data_index = 0;
     static audio_status_t audio_status = AUDIO_END;
 
     /* TEST */
@@ -50,24 +50,26 @@ void control_timer_callback() {
 
     if (play_audio) {
         /* TEST */
-        audio_status = get_audio_intensity(audio_data_index, &audio_data);
+        audio_status = get_audio_intensity(current_audio_data_index, &current_audio_data);
 
-        audio_data_index++;
+        current_audio_data_index++;
+
         /* TEST */
 
         /* TEST */
         // audio_status = (counter % 82000 == 0) ? AUDIO_END : AUDIO_PLAYING;
         // counter++;
 
-        // audio_data = 255;
+        // current_audio_data = 255;
+
         /* TEST */
 
         if (audio_status == AUDIO_END) {
             play_audio = false;
-            audio_data_index = 0;
-            audio_data = 0;
+            current_audio_data_index = 0;
+            current_audio_data = 0;
         }
     } else {
-        audio_data = 0;
+        current_audio_data = 0;
     }
 }
