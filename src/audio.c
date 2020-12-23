@@ -4,8 +4,7 @@
  * @brief Unsigned 8-bit WAV audio file related
  *
  * @note Audacity was used to convert from mp3 to wav
- * @note WAVToCode <http://colinjs.com/wavtocode/wavtocode.htm> was used
- *       to get the data from the wav audio file
+ * @note To generate the audio_data array the scripts/wav_reader.py was used
  */
 
 #include "audio.h"
