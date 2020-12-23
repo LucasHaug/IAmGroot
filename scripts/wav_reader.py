@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
         file.write(f"#define SAMPLING_RATE_HZ {sampling_rate}U\n\n")
 
-        file.write(f"uint8_t audio_data[{num_define_string}] {{\n")
+        file.write(f"uint8_t audio_data[{num_define_string}] = {{\n")
 
         for item in chuncked_data[:-1]:
             formtaed_item = ', '.join(f"{num:3}" for num in item)
