@@ -1,6 +1,7 @@
 # I Am Groot
 
 Projeto embracado utilizando microcontrolador da família STM32 para falar num auto falante "I am Groot".
+
 ## Requisitos
 
 * [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)
@@ -79,6 +80,13 @@ Ou, caso use um gravador com J-Link:
 ```bash
 make jflash
 ```
+
+## Links úteis
+
+* https://www.st.com/resource/en/application_note/cd00259245-audio-and-waveform-generation-using-the-dac-in-stm32-products-stmicroelectronics.pdf
+* https://os.mbed.com/users/4180_1/notebook/using-a-speaker-for-audio-output/
+* https://www.instructables.com/Simple-Wav-Player-Using-Arduino/
+* https://www.instructables.com/Play-SongsMP3-With-Arduino-Using-PWM-on-Speaker-or/
 
 ---
 
