@@ -1182,24 +1182,14 @@ uint8_t audio_data[NUM_ELEMENTS] = {
  * Public Function Body Definitions
  *****************************************/
 
-audio_status_t get_audio_intensity(uint16_t data_index, uint8_t* p_store_data) {
-    uint8_t data = MIN_INTENSITY;
-
-    if (data_index < NUM_ELEMENTS) {
-        data = audio_data[data_index];
-    } else {
-        data = MIN_INTENSITY;
-    }
-
-    *p_store_data = data;
-
-    if (data_index < NUM_ELEMENTS - 1) {
-        return AUDIO_PLAYING;
-    } else {
-        return AUDIO_END;
-    }
+const uint8_t* get_audio_data() {
+    return audio_data;
 }
 
-uint16_t get_audio_sampling_rate() {
+uint16_t get_audio_size() {
+    return NUM_ELEMENTS;
+}
+
+uint32_t get_audio_sampling_rate() {
     return SAMPLING_RATE_HZ;
 }

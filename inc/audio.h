@@ -13,35 +13,28 @@
 #include <stdint.h>
 
 /*****************************************
- * Public Types
- *****************************************/
-
-/**
- * @brief Audio status.
- */
-typedef enum audio_status {
-    AUDIO_PLAYING,
-    AUDIO_END,
-} audio_status_t;
-
-/*****************************************
  * Public Function Prototypes
  *****************************************/
 
 /**
- * @brief Get the audio intensity
+ * @brief Get audio data
  *
- * @param data_index Index to get the audio data
- * @param p_store_data Pointer where to store the data
- * @return audio_status_t
+ * @return Pointer to audio buffer
  */
-audio_status_t get_audio_intensity(uint16_t data_index, uint8_t* p_store_data);
+const uint8_t* get_audio_data();
+
+/**
+ * @brief Get the audio size
+ *
+ * @return Audio size
+ */
+uint16_t get_audio_size();
 
 /**
  * @brief Get the audio sampling rate
  *
  * @return Samppling rate in Hz
  */
-uint16_t get_audio_sampling_rate();
+uint32_t get_audio_sampling_rate();
 
 #endif // __AUDIO_H__

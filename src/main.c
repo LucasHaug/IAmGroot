@@ -7,14 +7,6 @@
 #include "mcu.h"
 #include "audio.h"
 #include "speaker.h"
-#include "control_timer.h"
-
-/*****************************************
- * Private Variables
- *****************************************/
-
-static uint8_t current_audio_data = 0;
-static bool play_audio = false;
 
 /*****************************************
  * Main Function
@@ -24,39 +16,32 @@ int main(void) {
     mcu_init();
     speaker_init();
 
-    uint16_t sampling_rate = get_audio_sampling_rate();
+    const uint8_t* p_audio_data = get_audio_data();
+    uint16_t audio_size = get_audio_size();
+    uint32_t sampling_rate = get_audio_sampling_rate();
 
-    control_timer_init(sampling_rate);
+    spekaer_set_audio(p_audio_data, audio_size, sampling_rate);
+
+    bool changed_state = false;
+    speaker_status_t speaker_status = speaker_get_status();
 
     for (;;) {
-        if (button_is_pressed()) {
-            led_toggle();
+        speaker_status = speaker_get_status();
 
-            play_audio = true;
+        if (button_is_pressed() && (speaker_status == SPEAKER_STOPPED)) {
+            speaker_play();
+
+            speaker_status = speaker_get_status();
+
+            changed_state = true;
         }
 
-        speaker_play(current_audio_data);
-    }
-}
+        if (speaker_status == SPEAKER_STOPPED) {
+            if (changed_state) {
+                speaker_stop();
 
-/**
- * @brief Control callback function
- */
-void control_timer_callback() {
-    static uint16_t current_audio_data_index = 0;
-    static audio_status_t audio_status = AUDIO_END;
-
-    if (play_audio) {
-        audio_status = get_audio_intensity(current_audio_data_index, &current_audio_data);
-
-        current_audio_data_index++;
-
-        if (audio_status == AUDIO_END) {
-            play_audio = false;
-            current_audio_data_index = 0;
-            current_audio_data = 0;
+                changed_state = false;
+            }
         }
-    } else {
-        current_audio_data = 0;
     }
 }

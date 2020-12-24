@@ -12,6 +12,18 @@
 #include <stdint.h>
 
 /*****************************************
+ * Public Types
+ *****************************************/
+
+/**
+ * @brief Speaker status.
+ */
+typedef enum speaker_status {
+    SPEAKER_PLAYING,
+    SPEAKER_STOPPED,
+} speaker_status_t;
+
+/*****************************************
  * Public Function Prototypes
  *****************************************/
 
@@ -21,10 +33,29 @@
 void speaker_init();
 
 /**
- * @brief Plays a intensity value in the speaker
+ * @brief Sets the audio to be played
  *
- * @param sound_intensity Intensity to be played
+ * @param p_audio Pointer to audio data
+ * @param audio_size Audio size
+ * @param sampling_rate_hz Audio sampling rate
  */
-void speaker_play(uint8_t sound_intensity);
+void spekaer_set_audio(const uint8_t* p_audio,  uint16_t audio_size, float sampling_rate_hz);
+
+/**
+ * @brief Plays the audio
+ */
+void speaker_play();
+
+/**
+ * @brief Stops the audio
+ */
+void speaker_stop();
+
+/**
+ * @brief Gets speaker status
+ *
+ * @return speaker_status_t
+ */
+speaker_status_t speaker_get_status();
 
 #endif // __SPEAKER_H__
