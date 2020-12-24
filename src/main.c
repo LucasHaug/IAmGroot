@@ -30,6 +30,8 @@ int main(void) {
 
     for (;;) {
         if (button_is_pressed()) {
+            led_toggle();
+
             play_audio = true;
         }
 
