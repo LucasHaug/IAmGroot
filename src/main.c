@@ -46,25 +46,10 @@ void control_timer_callback() {
     static uint16_t current_audio_data_index = 0;
     static audio_status_t audio_status = AUDIO_END;
 
-    /* TEST */
-    // static uint32_t counter = 0;
-    /* TEST */
-
     if (play_audio) {
-        /* TEST */
         audio_status = get_audio_intensity(current_audio_data_index, &current_audio_data);
 
         current_audio_data_index++;
-
-        /* TEST */
-
-        /* TEST */
-        // audio_status = (counter % 82000 == 0) ? AUDIO_END : AUDIO_PLAYING;
-        // counter++;
-
-        // current_audio_data = 255;
-
-        /* TEST */
 
         if (audio_status == AUDIO_END) {
             play_audio = false;
